@@ -88,7 +88,6 @@
       }
     }
 
-    /* Textos flotantes */
     .float-text {
       position: fixed;
       font-size: 1rem;
@@ -98,6 +97,25 @@
       z-index: 1;
     }
 
+    /* OSITO ANIMADO */
+    .bear {
+      position: absolute;
+      top: 200%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      z-index: 0;
+      animation: floatBear 4s ease-in-out infinite;
+    }
+
+    @keyframes floatBear {
+      0%, 100% {
+        transform: translate(-50%, -50%) translateY(0);
+      }
+      50% {
+        transform: translate(-50%, -50%) translateY(-20px);
+      }
+    }
   </style>
 </head>
 <body>
@@ -113,6 +131,9 @@
   </div>
 
   <div class="message" id="messageBox"></div>
+
+  <!-- OSITO ANIMADO -->
+  <img class="bear" src="https://i.pinimg.com/originals/98/94/8c/98948c6cdab2d4120d48a8f3f38edebd.gif" alt="Osito de amor">
 
   <script>
     const messages = [
@@ -137,12 +158,11 @@
     function showMessage(index) {
       const box = document.getElementById("messageBox");
       box.classList.remove("show");
-      void box.offsetWidth; // reiniciar animación
+      void box.offsetWidth;
       box.textContent = messages[index];
       box.classList.add("show");
     }
 
-    // Corazones animados
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -150,13 +170,11 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = 5 + Math.random() * 5 + "s";
       document.body.appendChild(heart);
-
       setTimeout(() => heart.remove(), 10000);
     }
 
     setInterval(createHeart, 300);
 
-    // Textos flotantes
     function createFloatingText() {
       const txt = document.createElement("div");
       txt.className = "float-text";
@@ -170,7 +188,6 @@
 
     setInterval(createFloatingText, 1500);
 
-    // Besos flotantes
     function launchKisses() {
       for (let i = 0; i < 30; i++) {
         setTimeout(() => {
